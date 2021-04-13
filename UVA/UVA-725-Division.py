@@ -164,25 +164,26 @@ import random
 
 # mult with inc of N
 N = int(input())
+import itertools
+den = list(itertools.permutations([k for k in range(10)], 5))
 while N != 0:
-    import itertools
-    den = list(itertools.permutations([k for k in range(10)], 5))
-
     c1 = 0
-    low_finish = 0
-    high_finish = len(den) - 1
-    while low_finish < high_finish:
-        target_finish = (low_finish + high_finish) // 2
-        check_finish = int(''.join([str(j) for j in den[target_finish]])) *N
-        if len(str(check_finish)) >= 6:
-            high_finish = target_finish - 1
-        elif len(str(check_finish)) < 6:
-            low_finish = target_finish + 1
+    # low_finish = 0
+    # high_finish = len(den) - 1
+    # while low_finish < high_finish:
+    #     target_finish = (low_finish + high_finish) // 2
+    #     check_finish = int(''.join([str(j) for j in den[target_finish]])) *N
+    #     if len(str(check_finish)) >= 6:
+    #         high_finish = target_finish - 1
+    #     elif len(str(check_finish)) < 6:
+    #         low_finish = target_finish + 1
         
-    for i in range(0, target_finish + 1):
+    # for i in range(0, target_finish + 1):
+    for i in range(0, len(den)):
         den_str = (''.join([str(k) for k in den[i]]))
         den_int = int(den_str)
         mult = N * den_int
+        if mult > 98765: break
         mult_str = str(mult)
         mult_set = set(mult_str)
         if len(mult_str) in range(4, 6) and len(mult_set) == len(mult_str):
